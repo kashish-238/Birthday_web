@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy 20th, Samita 🌹❤️</title>
+
+  <style>
+    :root{
+      --blood:#8b0000;      /* blood red */
+      --blood2:#b30000;
+      --paper:#fff7f9;      /* soft paper */
+      --white:#ffffff;
+      --ink:#1a1a22;
+      --muted:#5a5a72;
+
+      --shadow: 0 18px 44px rgba(0,0,0,.12);
+      --shadowRed: 0 16px 36px rgba(139,0,0,.18);
+
+      --radius: 26px;
+      --radius2: 20px;
+    }
+
+    *{box-sizing:border-box}
+    html, body { height:100%; }
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      color:var(--ink);
+      overflow-x:hidden;
+
+      /* cute diary / paper background + red glow */
+      background:
+        radial-gradient(1100px 700px at 10% 12%, rgba(139,0,0,.18) 0%, transparent 60%),
+        radial-gradient(900px 600px at 90% 18%, rgba(179,0,0,.12) 0%, transparent 58%),
+        linear-gradient(135deg, var(--white), var(--paper));
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      position:relative;
+    }
+
+    /* subtle paper grain */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.10;
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(0,0,0,.18) 1px, transparent 1.6px);
+      background-size: 20px 20px;
+      mix-blend-mode:multiply;
+    }
+
+    /* ROSE CORNERS (SVG background) */
+    body:after{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      opacity:.22;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900' viewBox='0 0 900 900'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='65%25'%3E%3Cstop offset='0%25' stop-color='%23b30000' stop-opacity='.45'/%3E%3Cstop offset='60%25' stop-color='%238b0000' stop-opacity='.18'/%3E%3Cstop offset='100%25' stop-color='%238b0000' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Cg fill='none' stroke='%238b0000' stroke-opacity='.45' stroke-width='3'%3E%3Cpath d='M120 170c45-60 120-55 150 0 25 45-5 100-55 120-55 22-120-5-120-70 0-20 8-38 25-50z'/%3E%3Cpath d='M148 198c30-40 78-36 98 0 16 30-4 66-36 80-36 14-78-4-78-47 0-14 5-26 16-33z'/%3E%3Cpath d='M730 160c-45-60-120-55-150 0-25 45 5 100 55 120 55 22 120-5 120-70 0-20-8-38-25-50z'/%3E%3Cpath d='M702 188c-30-40-78-36-98 0-16 30 4 66 36 80 36 14 78-4 78-47 0-14-5-26-16-33z'/%3E%3Cpath d='M135 740c45 60 120 55 150 0 25-45-5-100-55-120-55-22-120 5-120 70 0 20 8 38 25 50z'/%3E%3Cpath d='M163 712c30 40 78 36 98 0 16-30-4-66-36-80-36-14-78 4-78 47 0 14 5 26 16 33z'/%3E%3Cpath d='M765 745c-45 60-120 55-150 0-25-45 5-100 55-120 55-22 120 5 120 70 0 20-8 38-25 50z'/%3E%3Cpath d='M737 717c-30 40-78 36-98 0-16-30 4-66 36-80 36-14 78 4 78 47 0 14-5 26-16 33z'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='120' cy='170' r='140' fill='url(%23g)'/%3E%3Ccircle cx='780' cy='160' r='140' fill='url(%23g)'/%3E%3Ccircle cx='135' cy='740' r='140' fill='url(%23g)'/%3E%3Ccircle cx='765' cy='745' r='140' fill='url(%23g)'/%3E%3C/g%3E%3C/svg%3E");
+      background-repeat:no-repeat;
+      background-size: cover;
+      filter: blur(.2px);
+    }
+
+    /* FULL SCREEN LAYOUT */
+    .page{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .wrap{
+      width:100%;
+      max-width:1100px;
+      margin:0 auto;
+      padding: clamp(14px, 2.6vw, 26px);
+      flex: 1;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      position:relative;
+      z-index:1;
+    }
+
+    /* diary fonts */
+    .diary-title{
+      font-family: "Segoe Script","Lucida Handwriting","Brush Script MT","Apple Chancery",cursive;
+      letter-spacing:.2px;
+    }
+    .diary-text{
+      font-family: "Segoe Print","Bradley Hand","Comic Sans MS","Trebuchet MS",system-ui;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      position:sticky;
+      top:10px;
+      z-index:50;
+
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(139,0,0,.14);
+      border-radius: 18px;
+      padding:12px 14px;
+      box-shadow: 0 14px 30px rgba(0,0,0,.10);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .seal{
+      width:44px;height:44px;border-radius:16px;
+      background: radial-gradient(circle at 30% 30%, #ff6b6b 0%, var(--blood2) 38%, var(--blood) 70%);
+      box-shadow: var(--shadowRed);
+      position:relative;
+    }
+    .seal:after{
+      content:"❤";
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      color:white;
+      font-size:18px;
+      text-shadow: 0 10px 22px rgba(0,0,0,.18);
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-weight:800;
+      margin-bottom:2px;
+    }
+    .brand b{
+      display:block;
+      font-weight:1000;
+      color:var(--blood);
+    }
+
+    nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+    nav a{
+      text-decoration:none;
+      font-weight:900;
+      color: var(--blood);
+      padding:8px 12px;
+      border-radius: 999px;
+      border:1px solid rgba(139,0,0,.18);
+      background: rgba(255,255,255,.78);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    nav a:hover{ transform: translateY(-1px); box-shadow: 0 14px 26px rgba(139,0,0,.12); }
+
+    .hero{
+      position:relative;
+      border-radius: var(--radius);
+      padding: clamp(18px, 3vw, 30px);
+      background: rgba(255,255,255,.82);
+      border: 1px solid rgba(139,0,0,.14);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(90deg, rgba(139,0,0,.12), rgba(139,0,0,0) 28%),
+        repeating-linear-gradient(
+          to bottom,
+          rgba(139,0,0,.06) 0px,
+          rgba(139,0,0,.06) 1px,
+          transparent 1px,
+          transparent 26px
+        );
+      opacity:.55;
+      pointer-events:none;
+      mix-blend-mode:multiply;
+    }
+
+    .hero-inner{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:center;
+    }
+    @media (max-width: 900px){
+      .hero-inner{ grid-template-columns:1fr; }
+    }
+
+    h1{
+      margin:0;
+      color:var(--blood);
+      font-size: clamp(32px, 4.8vw, 62px);
+      line-height:1.02;
+      text-shadow: 0 14px 30px rgba(139,0,0,.10);
+    }
+
+    .sub{
+      margin:12px 0 0;
+      color: #333344;
+      font-size: 16px;
+      line-height:1.65;
+      max-width: 64ch;
+    }
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    .chip{
+      padding:10px 12px;border-radius:999px;
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(139,0,0,.16);
+      font-weight:950;
+      color: var(--blood);
+      box-shadow: 0 12px 24px rgba(139,0,0,.08);
+    }
+
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn{
+      border:0;
+      padding:12px 14px;
+      border-radius: 18px;
+      font-weight:1000;
+      cursor:pointer;
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--blood), #ff2b2b);
+      color:white;
+      box-shadow: var(--shadowRed);
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(139,0,0,.18);
+      color:var(--blood);
+      box-shadow: 0 16px 30px rgba(0,0,0,.08);
+    }
+
+    .polaroid{
+      border-radius: 22px;
+      background: rgba(255,255,255,.86);
+      border:1px solid rgba(139,0,0,.14);
+      padding: 14px;
+      box-shadow: var(--shadow);
+      transform: rotate(-2deg);
+    }
+    .photo{
+      width:100%;
+      aspect-ratio: 4/3;
+      border-radius: 18px;
+      background:
+        radial-gradient(220px 160px at 35% 35%, rgba(139,0,0,.22), transparent 62%),
+        radial-gradient(260px 200px at 78% 45%, rgba(179,0,0,.16), transparent 70%),
+        linear-gradient(135deg, rgba(255,255,255,.90), rgba(255,255,255,.55));
+      border: 1px dashed rgba(139,0,0,.25);
+      display:grid;place-items:center;
+      color: rgba(23,23,31,.65);
+      font-weight: 950;
+      text-align:center;
+      padding: 10px;
+    }
+    .caption{
+      margin-top:10px;
+      color: var(--blood);
+      font-weight:950;
+    }
+
+    .card{
+      background: rgba(255,255,255,.82);
+      border:1px solid rgba(139,0,0,.14);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .kicker{
+      display:flex;align-items:flex-end;justify-content:space-between;gap:10px;
+      margin-bottom: 14px;
+    }
+    .kicker h2{
+      margin:0;
+      color:var(--blood);
+      font-size:22px;
+    }
+    .kicker span{
+      color:#6a2b2b;
+      font-weight:900;
+      font-size: 13px;
+    }
+
+    .grid{
+      display:grid;
+      gap:14px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 920px){ .grid{grid-template-columns:1fr 1fr} }
+    @media (max-width: 620px){ .grid{grid-template-columns:1fr} }
+
+    .mini{
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(139,0,0,.14);
+      border-radius: 22px;
+      padding:16px;
+      box-shadow: 0 16px 34px rgba(139,0,0,.10);
+      position:relative;
+      overflow:hidden;
+    }
+    .mini:before{
+      content:"";
+      position:absolute; inset:-80px;
+      background: radial-gradient(280px 200px at 20% 30%, rgba(139,0,0,.10), transparent 60%);
+      pointer-events:none;
+    }
+    .mini h3{ margin:0 0 8px; color:var(--blood); font-size:16px; }
+    .mini p{ margin:0; color:#343445; line-height:1.65; }
+
+    .timeline{ display:grid; gap:12px; }
+    .event{
+      display:flex; gap:12px; align-items:flex-start;
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(139,0,0,.14);
+      border-radius: 20px;
+      padding: 12px 14px;
+      box-shadow: 0 14px 28px rgba(0,0,0,.07);
+    }
+    .dot{
+      width:12px;height:12px;border-radius:999px;margin-top:6px;
+      background: linear-gradient(135deg, var(--blood), #ff2b2b);
+      box-shadow: 0 12px 20px rgba(139,0,0,.18);
+      flex:0 0 12px;
+    }
+    .event b{ display:block; color:var(--blood); }
+    .event small{ color:#3b3b4a; font-weight:800; line-height:1.55; }
+
+    .note{
+      margin-top:12px;
+      padding:18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(139,0,0,.16);
+      color:#2f2f3a;
+      line-height:1.8;
+      display:none;
+      box-shadow: 0 20px 44px rgba(139,0,0,.12);
+    }
+
+    .footer{
+      margin: 14px 0 10px;
+      text-align:center;
+      color: rgba(139,0,0,.70);
+      font-weight:1000;
+      padding-bottom: 10px;
+    }
+
+    /* Confetti canvas */
+    canvas#confetti{
+      position: fixed; inset:0;
+      pointer-events:none;
+      z-index:999;
+    }
+
+    .photo-img{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px dashed rgba(139,0,0,.25);
+  box-shadow: 0 14px 28px rgba(0,0,0,.08);
+  display:block;
+}
+
+  </style>
+</head>
+
+<body>
+  <canvas id="confetti"></canvas>
+
+  <div class="page">
+    <div class="wrap">
+      <header>
+        <div class="brand">
+          <div class="seal" aria-hidden="true"></div>
+          <div>
+            <small class="diary-text">for my soul sister 🌹</small>
+            <b class="diary-text">Happy Birthday, Samita ❤️</b>
+          </div>
+        </div>
+
+        <nav class="diary-text">
+          <a href="#reasons">Reasons</a>
+          <a href="#memories">Memories</a>
+          <a href="#letter">Letter</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <div class="hero-inner">
+          <div>
+            <h1 class="diary-title">To my Solovey • Seijun • Sweetheart</h1>
+            <p class="sub diary-text">
+              You’re my safe space, my motivation, my “your message makes my day” person.
+              Blood red for the love that stays forever. ❤️🌹
+            </p>
+
+            <div class="chips diary-text">
+              <div class="chip">20 & iconic ✨</div>
+              <div class="chip">book café dreams ☕📚</div>
+              <div class="chip">reincarnate together ♾️</div>
+              <div class="chip">NL + Thakur Mall 🥹</div>
+            </div>
+
+            <div class="actions diary-text">
+              <button class="btn primary" id="confettiBtn">birthday magic 🎉</button>
+              <button class="btn ghost" id="scrollBtn">read my diary ↓</button>
+            </div>
+          </div>
+
+<aside class="polaroid">
+  <img
+    class="photo-img"
+    src="cutie.jpeg"
+    alt="Samita"
+  />
+  <div class="caption diary-title">“And what makes you think Sharingan is the only weapon I have?”</div>
+</aside>
+
+        </div>
+      </main>
+
+      <section id="reasons" class="card">
+        <div class="kicker">
+          <h2 class="diary-title">Things I love about you</h2>
+          <span class="diary-text">my favorite human ❤️</span>
+        </div>
+
+        <div class="grid diary-text">
+          <div class="mini">
+            <h3>🫧 You feel like home</h3>
+            <p>With you, every second is precious.</p>
+          </div>
+          <div class="mini">
+            <h3>🌟 You motivate me</h3>
+            <p>Talking to you encourages me. You make me want to do better.</p>
+          </div>
+          <div class="mini">
+            <h3>😂 We’re delulu together</h3>
+            <p>Kabhi dum nhi harege will always pray to get reincarnated!!!!!</p>
+          </div>
+          <div class="mini">
+            <h3>📲 Your messages = instant happy</h3>
+            <p>Thats obvious tho hehe</p>
+          </div>
+          <div class="mini">
+            <h3>🧿 Always on your side</h3>
+            <p>Sad? I’m here, bhad mai jaye bakhi useless log!</p>
+          </div>
+          <div class="mini">
+            <h3>♾️ This is forever</h3>
+            <p>Prime years, glow ups, new chapters I’m staying for all of it mwahhhh</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="memories" class="card">
+        <div class="kicker">
+          <h2 class="diary-title">Memories? Way too many, pics? WAY TOO LESS GIRL!</h2>
+          <span class="diary-text">and more loading… always along with bomb ass pictures</span>
+        </div>
+
+        <div class="timeline diary-text">
+          <div class="event">
+            <div class="dot"></div>
+            <div>
+              <b>NL & Thakur Mall days</b>
+              <small>That was AND IS still my fav place ngl</small>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="dot"></div>
+            <div>
+              <b>That OCM lecture moment 😭</b>
+              <small>That was so embarassing but now tht moment never fails to make me smile.</small>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="dot"></div>
+            <div>
+              <b>Reincarnation signs</b>
+              <small>Every thing is a signal k hum hore h lol 📚</small>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="dot"></div>
+            <div>
+              <b>Calls that fix everything</b>
+              <small>Even the most random conversation makes my day better.</small>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="letter" class="card">
+        <div class="kicker">
+          <h2 class="diary-title">A letter for you</h2>
+          <span class="diary-text">tap to open 💌</span>
+        </div>
+
+        <button class="btn primary diary-text" id="openNote">open my letter ❤️</button>
+
+        <div class="note diary-text" id="note">
+          Seijun/Solovey/Haki/Sweetheart,<br><br>
+          I’m so proud of you. You’re growing into yourself so beautifully, and I feel lucky that I get to witness it even from far away.<br><br>
+          If you ever feel alone, read this and remember: you have me. Always.
+          I’m cheering for you loudly. I promise to make sure that we create many more such beautiful memories together.
+          <br><br>
+          - Your Misako/Zayka/Cannon 🌹
+        </div>
+      </section>
+
+      <div class="footer diary-text">
+        From your fav person mwah 🌹❤️
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("scrollBtn").addEventListener("click", () => {
+      document.getElementById("reasons").scrollIntoView({ behavior: "smooth" });
+    });
+
+    const note = document.getElementById("note");
+    document.getElementById("openNote").addEventListener("click", () => {
+      const open = note.style.display === "block";
+      note.style.display = open ? "none" : "block";
+      if (!open) note.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+    let confetti = [], running = false, rafId = null;
+
+    function resize() {
+      canvas.width = window.innerWidth * devicePixelRatio;
+      canvas.height = window.innerHeight * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const colors = ["#8b0000", "#b30000", "#ffffff", "#ffebee"];
+
+    function rand(min, max){ return Math.random() * (max - min) + min; }
+
+    function burst(count = 180){
+      confetti = [];
+      for (let i=0;i<count;i++){
+        confetti.push({
+          x: rand(0, window.innerWidth),
+          y: rand(-20, window.innerHeight * 0.2),
+          vx: rand(-2.8, 2.8),
+          vy: rand(1.6, 6.0),
+          r: rand(2.0, 5.2),
+          rot: rand(0, Math.PI),
+          vr: rand(-0.22, 0.22),
+          life: rand(70, 150),
+          c: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      running = true;
+      tick();
+      setTimeout(() => { running = false; }, 2400);
+    }
+
+    function tick(){
+      if (!running){
+        cancelAnimationFrame(rafId);
+        ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+        return;
+      }
+      rafId = requestAnimationFrame(tick);
+      ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
+
+      for (const p of confetti){
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vy += 0.02;
+        p.life -= 1;
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.c;
+        ctx.globalAlpha = 0.95;
+        ctx.fillRect(-p.r, -p.r, p.r*2.2, p.r*2.2);
+        ctx.restore();
+      }
+
+      confetti = confetti.filter(p => p.life > 0 && p.y < window.innerHeight + 50);
+      if (confetti.length === 0) running = false;
+    }
+
+    document.getElementById("confettiBtn").addEventListener("click", () => burst());
+  </script>
+</body>
+</html>
